@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
+import 'package:video/video_app.dart';
 import 'package:video_player/video_player.dart';
 
 void main() {
@@ -32,25 +33,23 @@ class Home extends StatelessWidget {
           onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => MyHomePage(
-                        title: 'xc',
-                      ))),
+                  builder: (context) => VideoApp())),
         ),
       ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class ChewieVideo extends StatefulWidget {
+  ChewieVideo({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ChewieVideoState createState() => _ChewieVideoState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ChewieVideoState extends State<ChewieVideo> {
   late final VideoPlayerController videoPlayerController;
   late final bool looping;
   late final bool autoplay;
@@ -59,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    videoPlayerController = VideoPlayerController.network('URL');
+    videoPlayerController = VideoPlayerController.network('https://bravecsdev.blob.core.windows.net/joulius/video/joulius_introduction.mp4');
     _chewieController = ChewieController(
       videoPlayerController: videoPlayerController,
       autoInitialize: true,
